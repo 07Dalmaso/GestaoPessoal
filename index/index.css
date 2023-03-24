@@ -81,7 +81,10 @@ body {
   }
   
   footer {
-    background-color: #ddd;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
     padding: 20px;
     text-align: center;
   }
