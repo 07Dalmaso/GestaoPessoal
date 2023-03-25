@@ -19,6 +19,7 @@
   /*  justify-content: space-between;*/
     justify-content: unset;
     height: 100%;
+    margin-top: -20px;
   }
   
   .card-number {
@@ -61,3 +62,16 @@
   
 
 /* Cartão Xp */
+
+body {
+  background-color: rgba(128, 128, 128, 0.5);
+  font-family: Arial, sans-serif;
+  /* Define a cor de fundo como cinza com 50% de transparência */
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+}
+
+
