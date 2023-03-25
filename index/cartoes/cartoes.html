@@ -14,10 +14,10 @@
 </head>
 
 <style>
-    body {
+    /* body {
         background-color: #f1f1f1;
         font-family: Arial, sans-serif;
-    }
+    } */
 
     .card-container {
         display: flex;
@@ -25,6 +25,7 @@
         justify-content: center;
     }
 
+    /*
     .card {
         background-color: white;
         border-radius: 10px;
@@ -41,12 +42,13 @@
 
     .card p {
         font-size: 16px;
-        margin: 10px 0;
-    }
+        margin: 10px 0; */
+    /* } */
 </style>
 
 <body>
-    <h1>Meus Cartões de Crédito</h1>
+    <!-- <h1>Meus Cartões de Crédito</h1> -->\
+    <br> <br> <br>
     <div class="card-container">
         <div class="credit-card">
             <div class="card-header">
@@ -73,21 +75,27 @@
                 </div>
             </div>
         </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <label for="saldo1">Saldo:</label>
+        <input type="range" id="saldo" value="1000" min="0" max="5000" step="100" oninput="atualizarSaldo()">
+        <span id="saldoAtual">R$ 1000</span>
     </div>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="card-container">
         <div class="credit-card">
             <div class="card-header">
-                <img src="https://upload.wikimedia.org/wikipedia/pt/0/0b/XP_Investimentos_logo.png"
+                <img src="data:image/png;base64,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"
                     alt="Credit Card Logo">
             </div>
+            <br>
             <br>
             <div class="card-body">
                 <div class="card-number">
                     <span>****</span>
                     <span>****</span>
                     <span>****</span>
-                    <span>3456</span>
+                    <span>5454</span>
                 </div>
                 <div class="card-info">
                     <div class="card-holder">
@@ -101,13 +109,18 @@
                 </div>
             </div>
         </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <label for="saldo">Saldo:</label>
+        <input type="range" id="saldo" value="1000" min="0" max="5000" step="100" oninput="atualizarSaldo()">
+        <span id="saldoAtual">1000</span>
     </div>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="card-container">
         <div class="credit-card">
             <div class="card-header">
-                <img src="https://upload.wikimedia.org/wikipedia/pt/0/0b/XP_Investimentos_logo.png"
-                    alt="Credit Card Logo">
+                <img src="https://seeklogo.com/images/I/Ita___Personnalit__-logo-4AA5202535-seeklogo.com.png"
+                    alt="Credit Card Logo" class="center">
             </div>
             <br>
             <div class="card-body">
@@ -129,34 +142,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class="card-container">
-        <div class="credit-card">
-            <div class="card-header">
-                <img src="https://upload.wikimedia.org/wikipedia/pt/0/0b/XP_Investimentos_logo.png"
-                    alt="Credit Card Logo">
-            </div>
-            <br>
-            <div class="card-body">
-                <div class="card-number">
-                    <span>****</span>
-                    <span>****</span>
-                    <span>****</span>
-                    <span>3456</span>
-                </div>
-                <div class="card-info">
-                    <div class="card-holder">
-                        <label>Card Holder</label>
-                        <span>John Doe</span>
-                    </div>
-                    <div class="card-expiry">
-                        <label>Expiry</label>
-                        <span>12/24</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <label for="saldo">Saldo:</label>
+        <input type="range" id="saldo" value="1000" min="0" max="5000" step="100" oninput="atualizarSaldo()">
+        <span id="saldoAtual">1000</span>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
