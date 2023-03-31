@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <title>Bootstrap demo</title> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <head>
+        <title>Dashboard de Investimentos</title>
+    </head>
+    <link rel="stylesheet" href="investimento.css">
+    <!-- <script src="investimento.js"></script> -->
+</head>
+<header>
+    <!-- <h1>Dashboard</h1>
+  <nav>
+      <ul>
+          <li><a href="../index.html">Voltar</a></li>
+      </ul>
+  </nav> -->
+
+
+    <body>
+        <header>
+            <h1 id="titulo">Dashboard de Investimentos</h1>
+        </header>
+        <main>
+            <div class="row">
+
+                <div class="section-fin">
+
+                    <h2>Status</h2>
+
+                    <div class="termometro">
+                        <div class="termometro-barra" style="height: 75%;"></div>
+                        <div class="termometro-meta">75%</div>
+                      </div>
+                      
+
+                </div>
+
+                <div class="section-dados">
+
+                    <h2>Dados</h2>
+
+
+                    <div class="grafico">
+                        <Title>Dispesas</Title>
+                        <div class="coluna" style="height: 60px;">
+                             <div class="label">Jan</div>
+                        </div>
+                        <div class="coluna" style="height: 120px;">
+                             <div class="label">Fev</div>
+                        </div>
+                        <div class="coluna" style="height: 90px;">
+                             <div class="label">Mar</div>
+                        </div>
+                        <div class="coluna" style="height: 80px;">
+                             <div class="label">Abr</div>
+                        </div>
+                        <div class="coluna" style="height: 100px;">
+                             <div class="label">Mai</div>
+                        </div>
+                        <div class="coluna" style="height: 140px;">
+                             <div class="label">Jun</div>
+                        </div>
+                        <div class="coluna" style="height: 110px;">
+                             <div class="label">Jul</div>
+                        </div>
+                        <div class="coluna" style="height: 150px;">
+                             <div class="label">Ago</div>
+                        </div>
+                        <div class="coluna" style="height: 180px;">
+                             <div class="label">Set</div>
+                        </div>
+                        <div class="coluna" style="height: 200px;">
+                             <div class="label">Out</div>
+                        </div>
+                        <div class="coluna" style="height: 220px;">
+                             <div class="label">Nov</div>
+                        </div>
+                        <div class="coluna" style="height: 250px;">
+                             <div class="label">Dez</div>
+                        </div>
+                   </div>
+                </div>
+
+                <div class="section">
+
+                    <h2>Ações</h2>
+
+                    <div class="stock-panel">
+                        <h2 id="acao">Ação: PETR4</h2>
+                        <h3 id="acao1">Preço atual: R$ 26,50</h3>
+                    </div>
+                    <div class="stock-panel">
+                        <h2 id="acao">Ação: MXFR11</h2>
+                        <h3 id="acao1">Preço atual: R$ 26,50</h3>
+                    </div>
+
+                    <canvas id="acoes-chart"></canvas>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="section-dados">
+
+                    <h2>Dados</h2>
+                    <div class="grafico">
+                        <Title>Dispesas</Title>
+                        <div class="coluna" style="height: 60px;">
+                             <div class="label">Jan</div>
+                        </div>
+                        <div class="coluna" style="height: 120px;">
+                             <div class="label">Fev</div>
+                        </div>
+                        <div class="coluna" style="height: 90px;">
+                             <div class="label">Mar</div>
+                        </div>
+                        <div class="coluna" style="height: 80px;">
+                             <div class="label">Abr</div>
+                        </div>
+                        <div class="coluna" style="height: 100px;">
+                             <div class="label">Mai</div>
+                        </div>
+                        <div class="coluna" style="height: 140px;">
+                             <div class="label">Jun</div>
+                        </div>
+                        <div class="coluna" style="height: 110px;">
+                             <div class="label">Jul</div>
+                        </div>
+                        <div class="coluna" style="height: 150px;">
+                             <div class="label">Ago</div>
+                        </div>
+                        <div class="coluna" style="height: 180px;">
+                             <div class="label">Set</div>
+                        </div>
+                        <div class="coluna" style="height: 200px;">
+                             <div class="label">Out</div>
+                        </div>
+                        <div class="coluna" style="height: 220px;">
+                             <div class="label">Nov</div>
+                        </div>
+                        <div class="coluna" style="height: 250px;">
+                             <div class="label">Dez</div>
+                        </div>
+                   </div>
+
+                </div>
+
+                <div class="section-fin">
+
+                    <h2>Status</h2>
+
+
+                    <!-- <canvas id="acoes-chart"></canvas> -->
+
+                </div>
+
+                <div class="section">
+
+                    <h2>CDB</h2>
+                    <div class="stock-panel1">
+                        <h2 id="acao">CDB: Banco C6</h2>
+                        <h3 id="acao1">Valor Investido: R$ 1000,50</h3>
+                    </div>
+
+                    <div class="stock-panel1">
+                        <h2 id="acao">CDB: Banco PAGBANK</h2>
+                        <h3 id="acao1">Valor Investido: R$ 10520,50</h3>
+                    </div>
+
+                    <canvas id="cdb-chart"></canvas>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="section-fin">
+
+                    <h2>Status</h2>
+
+
+                    <!-- <canvas id="acoes-chart"></canvas> -->
+
+                </div>
+
+                <div class="section-dados">
+
+                    <h2>Dados</h2>
+                    <div class="grafico">
+                        <Title>Dispesas</Title>
+                        <div class="coluna" style="height: 60px;">
+                             <div class="label">Jan</div>
+                        </div>
+                        <div class="coluna" style="height: 120px;">
+                             <div class="label">Fev</div>
+                        </div>
+                        <div class="coluna" style="height: 90px;">
+                             <div class="label">Mar</div>
+                        </div>
+                        <div class="coluna" style="height: 80px;">
+                             <div class="label">Abr</div>
+                        </div>
+                        <div class="coluna" style="height: 100px;">
+                             <div class="label">Mai</div>
+                        </div>
+                        <div class="coluna" style="height: 140px;">
+                             <div class="label">Jun</div>
+                        </div>
+                        <div class="coluna" style="height: 110px;">
+                             <div class="label">Jul</div>
+                        </div>
+                        <div class="coluna" style="height: 150px;">
+                             <div class="label">Ago</div>
+                        </div>
+                        <div class="coluna" style="height: 180px;">
+                             <div class="label">Set</div>
+                        </div>
+                        <div class="coluna" style="height: 200px;">
+                             <div class="label">Out</div>
+                        </div>
+                        <div class="coluna" style="height: 220px;">
+                             <div class="label">Nov</div>
+                        </div>
+                        <div class="coluna" style="height: 250px;">
+                             <div class="label">Dez</div>
+                        </div>
+                   </div>
+
+                </div>
+                <div class="section">
+
+                    <h2>FII</h2>
+                    <div class="stock-panel2">
+                        <h2 id="acao">CDB: Banco C6</h2>
+                        <h3 id="acao1">Valor Investido: R$ 1000,50</h3>
+                    </div>
+
+                    <div class="stock-panel2">
+                        <h2 id="acao">CDB: Banco PAGBANK</h2>
+                        <h3 id="acao1">Valor Investido: R$ 10520,50</h3>
+                    </div>
+                    <a href="dados-acoes/dados-acoes.html" class="ver-mais">Ver Mais</a>
+                    <canvas id="acoes-chart"></canvas>
+
+                </div>
+            </div>
+
+            <!-- <div class="section">
+
+                <h2>Ações</h2>
+
+                <canvas id="acoes-chart"></canvas>
+
+
+            </div> -->
+
+        </main>
+        <!-- <footer>
+      <p>&copy; 2023 Dashboard de Investimentos</p>
+    </footer> -->
+
+    </body>
+
+</header>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+<body>
+
+</body>
+
+</html>
