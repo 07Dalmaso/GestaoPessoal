@@ -1,32 +1,100 @@
-/*menu */
-
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  nav li {
-    margin-left: 20px;
-  }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-  }
-    /*menu */
-  
+  background-color: #212529;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.transactions {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.transactions h2 {
+  margin-bottom: 30px;
+}
+
+.transactions-box {
+  background-color: #f7f7f7;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.transactions-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactions-box label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.transactions-box .form-control {
+  margin-bottom: 20px;
+  border-color: #dee2e6;
+}
+
+.transactions-box .form-control:focus {
+  border-color: #ced4da;
+  box-shadow: none;
+}
+
+.transactions-box button[type="submit"] {
+  background-color: #212529;
+  border-color: #212529;
+  color: #fff;
+}
+
+.transactions-box button[type="submit"]:hover {
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.transactions-list {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.transactions-list h2 {
+  margin-bottom: 30px;
+}
+
+.table thead th {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  font-weight: bold;
+  text-align: center;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.table tbody td {
+  vertical-align: middle;
+}
