@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Dashboard Financeiro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet "href="dashboard.css">
+  <script src="dashboard.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.js"></script>
+</head>
+
+<header>
+  <h1>Dashboard</h1>
+  <nav>
+    <ul>
+      <li><a href="home/home.html">Voltar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<body> 
+  <div class="main"div>
+  <canvas id = "canvas">
+    <!-- <div class="colunas">
+      <div class= "escala-y">
+        <div class="valores"div>R$3.000</div>
+        <div class="valores"div>R$2.500</div>
+        <div class="valores"div>R$2.000</div>
+        <div class="valores"div>R$1.500</div>
+        <div class="valores"div>R$1.000</div>
+        <div class="valores"div>R$500</div>
+        <div class="valores"div>R$0</div>
+        <div class="valores"div>-R$500</div>
+        <div class="valores"div>-R$1.000</div>
+        <div class="valores"div>-R$1.500</div>
+        <div class="valores"div>-R$2.000</div>
+        <div class="valores"div>-R$2.500</div>
+        <div class="valores"div>-R$3.000</div>
+      </div>
+      <div class="area-grafico">
+        <hr> -->
+        <!-- <div class="area-barras">
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%"  style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%"  style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+          <div class="divisao-barras"div>
+            <div class="barra vermelha" style="height: 30%" div></div>
+            <div class="barra azul" style="height: 45%" div></div>
+            <div class="barra verde" style="height:60%" div></div>
+          </div>
+        </div>
+        <div class="escala-x">
+          <div class = "divisao-meses">Jan<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Fev<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Mar<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Abr<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Mai<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Jun<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Jul<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Ago<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Set<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Out<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Nov<br>
+          2023
+        </div>
+          <div class = "divisao-meses">Dez<br>
+          2023
+        </div>
+        </div>
+      </div> --> 
+    <!-- </div>
+      <div class ="coluna_legenda" div>
+      <div class = "legenda_1" div>
+        <p>Saldo</p>
+      <div class = "legenda_2" div>
+        <p>Receitas</p>
+      </div>
+      <div class = "legenda_3" div>
+        <p>Despesas</p>
+      </div>
+    </div> -->
+  </canvas>
+  </div>
+</body>
+</html>
