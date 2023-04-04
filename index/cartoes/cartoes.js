@@ -1,3 +1,4 @@
+
 function atualizarSaldo() {
 
     var slider = document.getElementById("saldo");
