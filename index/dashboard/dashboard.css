@@ -28,4 +28,179 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
-  /*menu */
+
+/*menu */
+
+.grafico-barras {
+  width: 80%;
+  padding-left: 10%;
+  background-color: white;
+  height: 650px;
+  margin-top: 50px;
+  margin-left: 50px;
+  justify-content: center;
+  position: absolute;
+}
+
+.grafico-barras .colunas {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.grafico-barras .colunas .escala-y {
+  height: 100%;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  color: white;
+}
+
+.grafico-barras .colunas .escala-y .valores {
+  height: calc(100% / 13);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5px;
+  padding-block: 5px;
+}
+
+.grafico-barras .colunas .area-grafico {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  width: 100%;
+}
+
+.grafico-barras .colunas .area-grafico .area-barras {
+  height: 100%;
+  flex-grow: 1;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+
+}
+
+.grafico-barras .colunas .area-grafico .escala-x {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #333;
+  color: white;
+}
+
+
+.grafico-barras .colunas .area-grafico .area-barras .divisao-barras {
+  width: calc(100% / 12);
+  height: 100%;
+  display: flex;
+  background-color: rgba(205, 80, 255, 0.164);
+  padding-left: 50px;
+  align-items: first baseline;
+}
+
+.grafico-barras .colunas .area-grafico .area-barras .divisao-barras .hr {
+  color: #333;
+  position: relative;
+}
+
+.grafico-barras .colunas .area-grafico .area-barras .divisao-barras .barra.vermelha {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 8px;
+  border-radius: 5px;
+  margin: 0 1px;
+  background-color: rgb(255, 0, 0, 10);
+}
+
+.grafico-barras .colunas .area-grafico .area-barras .divisao-barras .barra.azul {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 8px;
+  border-radius: 5px;
+  margin: 0 1px;
+  background-color: rgb(0, 0, 255, 10);
+}
+
+.grafico-barras .colunas .area-grafico .area-barras .divisao-barras .barra.verde {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 8px;
+  border-radius: 5px;
+  margin: 0 1px;
+  background-color: rgb(0, 255, 0, 10);
+}
+
+
+.grafico-barras .colunas .area-grafico .escala-x .divisao-meses {
+  width: calc(100% / 12);
+  align-items: center;
+  text-align: center;
+}
+
+
+.coluna_legenda {
+  align-self: flex-end;
+  width: 150px;
+  height: 90px;
+  border: 1px solid #ccc;
+}
+
+.coluna_legenda .legenda_1 {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid black;
+  background-color: red;
+  margin-left: 2px;
+  justify-content: center;
+  text-align: center;
+}
+
+.coluna_legenda .legenda_2 {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  background-color: blue;
+  margin-left: 2px;
+  justify-content: center;
+  text-align: center;
+}
+
+.coluna_legenda .legenda_3 {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  background-color: green;
+  margin-left: 2px;
+  justify-content: center;
+  text-align: center;
+}
+
+#canvas {
+  margin: auto;
+  align-content: center;
+  width: 60%;
+  padding: 100px;
+  position: relative;
+  height: 40%;
+}
+
+.main {
+  top: 50%;
+  left: 50%;
+}
