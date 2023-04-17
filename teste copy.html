@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fundo de tela animado</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Exemplo de fundo de tela animado</h1>
+    <p>Este é um exemplo de como criar um fundo de tela animado que oscila entre duas cores usando CSS.</p>
+  </body>
+</html>
+<style>
+body {
+	background-color: #FFF;
+	animation: bg-animation 40s ease-in-out infinite;
+  }
+  
+  @keyframes bg-animation {
+	0% {
+	  background-color: #FFF;
+	}
+	50% {
+	  background-color: #333;
+	}
+	100% {
+	  background-color: #FFF;
+	}
+  }
+  
+  h1, p {
+	color: #333;
+	text-align: center;
+	margin: 50px auto;
+  }
+</style>
