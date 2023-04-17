@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Nova tela</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="index/index.css">
+</head>
+<header>
+	<h1>Minhas Finanças</h1>
+	<nav>
+		<ul>
+			<!-- <li><a href="home/home.html">Perfil</a></li> -->
+			<li><a href="dashboard/dashboard.html">Dashboard</a></li>
+			<li><a href="transacoes/transacoes.html">Transações</a></li>
+			<li><a href="categorias/categorias.html">Categorias</a></li>
+			<li><a href="cartoes/cartoes.html">Meus Cartões</a></li>
+			<li><a href="investimento/investimento.html">Investimentos</a></li>
+			<li><a href="relatorios/relatorios.html">Relatórios</a></li>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<button class="profile-button">
+
+				<a href="home/home.html">
+					<img src="./img/foto.jpg" alt="Foto de perfil">
+				</a>
+			</button>
+
+		</ul>
+	</nav>
+</header>
+
+<body>
+	<div class="site-content">
+		<div class="left-side">
+			<section class="summary">
+
+				<h2>Resumo das finanças</h2>
+				<br>
+				<div class="summary-box">
+					<div class="summary-item">
+						<h3>Saldo</h3>
+						<p id="teste">R$ -5.000,00</p>
+					</div>
+					<div class="summary-item">
+						<h3>Receitas</h3>
+						<p>R$ 10.000,00</p>
+					</div>
+					<div class="summary-item">
+						<h3>Despesas</h3>
+						<p>R$ 5.000,00</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+		<div class="right-side">
+
+			<h2>FII</h2>
+			<div class="stock-panel2">
+				<h2 id="acao">CDB: Banco C6</h2>
+				<h3 id="acao1">Valor Investido: R$ 1000,50</h3>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<style>
+	.site-content {
+		display: flex;
+		flex-direction: row;
+		background-image: linear-gradient(to right, #b8b6b6, #2a2222);
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		background-attachment: fixed;
+	}
+
+	.left-side {
+		width: 50%;
+		height: 100vh;
+	}
+
+	.right-side {
+		width: 50%;
+		height: 100vh;
+	}
+
+	@media screen and (max-width: 768px) {
+		.site-content {
+			flex-direction: column;
+			background-image: none;
+		}
+
+		.left-side,
+		.right-side {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	/* FII */
+	.stock-panel2 {
+		background: #ffb350;
+		background: linear-gradient(to bottom right, #7aff85, #ffb350);
+		border: 1px solid #ffb350;
+		border-radius: 4px;
+		padding: 16px;
+		width: 400px;
+		margin: 16px auto;
+	}
+
+	/* FII */
+
+	#acao,
+	#acao1 {
+		margin: 8px 0;
+	}
+
+	#acao {
+		color: #fff;
+	}
+
+	#acao1 {
+		color: #000000;
+	}
+</style>
