@@ -130,3 +130,22 @@ header {
   }
   
   /*menu */
+
+  #fundo, #Test {
+    background-color: #FFF;
+    animation: bg-animation 10s ease-in-out infinite;
+    }
+    
+    @keyframes bg-animation {
+    0% {
+      background-color: #FFF;
+    }
+    50% {
+      background-color: #333;
+    }
+    100% {
+      background-color: #FFF;
+    }
+    }
+    
+  
