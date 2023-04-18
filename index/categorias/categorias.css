@@ -1,75 +1,83 @@
 /* Estilos para o cabeçalho */
 header {
-    background-color: #212529;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  nav li {
-    margin-left: 20px;
-  }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Estilos para a seção de categorias */
-  section#categorias {
-    margin-top: 40px;
-    text-align: center;
-  }
-  
-  section#categorias h2 {
-    margin-bottom: 30px;
-  }
-  
-  section#categorias ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  section#categorias li {
-    margin: 10px;
-  }
-  
-  section#categorias a {
-    display: block;
-    background-color: #f7f7f7;
-    color: #212529;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  section#categorias a:hover {
-    background-color: #dee2e6;
-    color: #212529;
-  }
-  
-  /* Estilos para o rodapé */
-  footer {
-    background-color: #212529;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-  }
+  background-color: #212529;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para a seção de categorias */
+section#categorias {
+  margin-top: 40px;
+  text-align: center;
+}
+
+section#categorias h2 {
+  margin-bottom: 30px;
+}
+
+section#categorias table {
+  margin: auto;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+section#categorias th {
+  background-color: #212529;
+  color: #fff;
+  padding: 10px;
+}
+
+section#categorias td {
+  padding: 10px;
+  text-align: center;
+}
+
+section#categorias tbody tr:nth-child(odd) {
+  background-color: #f7f7f7;
+}
+
+section#categorias a {
+  display: block;
+  background-color: #f7f7f7;
+  color: #212529;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+section#categorias a:hover {
+  background-color: #dee2e6;
+  color: #212529;
+}
+
+/* Estilos para o rodapé */
+footer {
+  background-color: #212529;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}

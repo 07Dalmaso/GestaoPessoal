@@ -34,6 +34,18 @@
             <label for="transaction-value" class="form-label">Valor:</label>
             <input type="number" class="form-control" id="transaction-value" name="transaction-value">
           </div>
+          <div class="mb-3">
+            <label for="transaction-category" class="form-label">Categoria:</label>
+            <select class="form-select" id="transaction-category" name="transaction-category">
+              <option value="alimentacao">Alimentação</option>
+              <option value="transporte">Transporte</option>
+              <option value="moradia">Moradia</option>
+              <option value="saude">Saúde</option>
+              <option value="educacao">Educação</option>
+              <option value="lazer">Lazer</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
           <button type="submit" class="btn primary">Adicionar Transação</button>
         </form>
       </div>
@@ -46,6 +58,7 @@
             <th scope="col">Data</th>
             <th scope="col">Descrição</th>
             <th scope="col">Valor</th>
+            <th scope="col">Categoria</th>
           </tr>
         </thead>
         <tbody id="transaction-table-body">
