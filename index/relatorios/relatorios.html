@@ -1,73 +1,81 @@
-<!doctype html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Relatório de Investimento</title>
+    <link rel="stylesheet" href="relatorios.css" />
+  </head>
+  <body>
+     <header>
+          <h1>Relatórios</h1>
+          <nav>
+              <ul>
+                  <li><a href="../index.html">Voltar</a></li>
+              </ul>
+          </nav>
+      </header>
+    <main>
+      <section>
+        <h2>Resumo do Investimento</h2>
+        <table>
+          <tr>
+            <th>Investimento</th>
+            <th>Valor Investido</th>
+            <th>Retorno Esperado</th>
+          </tr>
+          <tr>
+            <td>Ações</td>
+            <td>R$ 10.000,00</td>
+            <td>R$ 15.000,00</td>
+          </tr>
+          <tr>
+            <td>Tesouro Direto</td>
+            <td>R$ 5.000,00</td>
+            <td>R$ 5.500,00</td>
+          </tr>
+          <tr>
+            <td>Fundos Imobiliários</td>
+            <td>R$ 2.000,0a</td>
+            <td>R$ 2.400,00</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>Gráfico de Investimento</h2>
+        <table>
+          <tr>
+            <th>Mês/Ano</th>
+            <th>Receitas</th>
+            <th>Despesas</th>
+            <th>Lucro/Prejuízo</th>
+          </tr>
+          <tr>
+            <td>Jan/2023</td>
+            <td>R$ 50.000,00</td>
+            <td>R$ 35.000,00</td>
+            <td>R$ 15.000,00</td>
+          </tr>
+          <tr>
+            <td>Fev/2023</td>
+            <td>R$ 60.000,00</td>
+            <td>R$ 40.000,00</td>
+            <td>R$ 20.000,00</td>
+          </tr>
+          <tr>
+            <td>Mar/2023</td>
+            <td>R$ 70.000,00</td>
+            <td>R$ 50.000,00</td>
+            <td>R$ 20.000,00</td>
+          </tr>
+        </table>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <title>Bootstrap demo</title> -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="relatorios.css">
-  <script src="relatorios.js"></script>
-</head>
-<header>
-  <h1>relatorios</h1>
-  <nav>
-      <ul>
-          <li><a href="../index.html">Voltar</a></li>
-      </ul>
-  </nav>
-</header>
-
-</head>
-<body>
-     <br><br><br><br>
-<div class="grafico">
-     <Title>Dispesas</Title>
-     <div class="coluna" style="height: 60px;">
-          <div class="label">Jan</div>
-     </div>
-     <div class="coluna" style="height: 120px;">
-          <div class="label">Fev</div>
-     </div>
-     <div class="coluna" style="height: 90px;">
-          <div class="label">Mar</div>
-     </div>
-     <div class="coluna" style="height: 80px;">
-          <div class="label">Abr</div>
-     </div>
-     <div class="coluna" style="height: 100px;">
-          <div class="label">Mai</div>
-     </div>
-     <div class="coluna" style="height: 140px;">
-          <div class="label">Jun</div>
-     </div>
-     <div class="coluna" style="height: 110px;">
-          <div class="label">Jul</div>
-     </div>
-     <div class="coluna" style="height: 150px;">
-          <div class="label">Ago</div>
-     </div>
-     <div class="coluna" style="height: 180px;">
-          <div class="label">Set</div>
-     </div>
-     <div class="coluna" style="height: 200px;">
-          <div class="label">Out</div>
-     </div>
-     <div class="coluna" style="height: 220px;">
-          <div class="label">Nov</div>
-     </div>
-     <div class="coluna" style="height: 250px;">
-          <div class="label">Dez</div>
-     </div>
-</div>
-
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-
-
+        <canvas id="myChart"></canvas>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="relatorios.js"></script>
+  </body>
 </html>
