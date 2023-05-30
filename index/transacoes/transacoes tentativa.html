@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="transacoes.css">
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Transações</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Voltar</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="transactions">
+        <h2>Transações</h2>
+        <div class="transactions-box">
+          <form id="transaction-form">
+            <div class="mb-3">
+              <label for="transaction-date" class="form-label">Data da transação:</label>
+              <input type="date" class="form-control" id="transaction-date" name="transaction-date">
+            </div>
+            <div class="mb-3">
+              <label for="transaction-description" class="form-label">Descrição:</label>
+              <input type="text" class="form-control" id="transaction-description" name="transaction-description">
+            </div>
+            <div class="mb-3">
+              <label for="transaction-value" class="form-label">Valor:</label>
+              <input type="number" class="form-control" id="transaction-value" name="transaction-value">
+            </div>
+            <div class="mb-3">
+              <label for="transaction-category" class="form-label">Categoria:</label>
+              <select class="form-select" id="transaction-category" name="transaction-category">
+                <option value="alimentacao">Alimentação</option>
+                <option value="transporte">Transporte</option>
+                <option value="moradia">Moradia</option>
+                <option value="saude">Saúde</option>
+                <option value="educacao">Educação</option>
+                <option value="lazer">Lazer</option>
+                <option value="outros">Outros</option>
+              </select>
+            </div>
+            <button type="submit" class="btn primary">Adicionar Transação</button>
+          </form>
+        </div>
+      </section>
+      <section class="transactions-list">
+        <h2>Lista de Transações</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Categoria</th>
+            </tr>
+          </thead>
+          <tbody id="transaction-table-body">
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="transacoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
