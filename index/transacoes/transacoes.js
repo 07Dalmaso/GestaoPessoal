@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
           row.appendChild(descriptionCell);
 
           const valueCell = document.createElement('td');
-          valueCell.textContent = transaction.value;
+          valueCell.textContent = transaction.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
           row.appendChild(valueCell);
 
           const categoryCell = document.createElement('td');

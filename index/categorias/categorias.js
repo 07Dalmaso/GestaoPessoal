@@ -1,59 +1,42 @@
-const transacoes = [
-    { categoria: "Alimentação", valor: 50 },
-    { categoria: "Transporte", valor: 20 },
-    { categoria: "Moradia", valor: 800 },
-    { categoria: "Saúde", valor: 100 },
-    { categoria: "Educação", valor: 200 },
-    { categoria: "Lazer", valor: 150 },
-    { categoria: "Outros", valor: 75},
-    { categoria: "Alimentação", valor: 30 },
-    { categoria: "Transporte", valor: 10},
-    { categoria: "Moradia", valor: 1200 },
-    { categoria: "Saúde", valor: 50 },
-    { categoria: "Educação", valor: 100 },
-    { categoria: "Lazer", valor: 50 },
-    { categoria: "Outros", valor: 25},
-  ];
-  
-  // Adiciona o valor de cada transação à categoria correspondente na tabela
-  transacoes.forEach((transacao) => {
-    switch (transacao.categoria) {
-      case "Alimentação":
-        document.getElementById("alimentacao-total").innerText =
-          parseFloat(document.getElementById("alimentacao-total").innerText) +
-          transacao.valor;
-        break;
-      case "Transporte":
-        document.getElementById("transporte-total").innerText =
-          parseFloat(document.getElementById("transporte-total").innerText) +
-          transacao.valor;
-        break;
-      case "Moradia":
-        document.getElementById("moradia-total").innerText =
-          parseFloat(document.getElementById("moradia-total").innerText) +
-          transacao.valor;
-        break;
-      case "Saúde":
-        document.getElementById("saude-total").innerText =
-          parseFloat(document.getElementById("saude-total").innerText) +
-          transacao.valor;
-        break;
-      case "Educação":
-        document.getElementById("educacao-total").innerText =
-          parseFloat(document.getElementById("educacao-total").innerText) +
-          transacao.valor;
-        break;
-      case "Lazer":
-        document.getElementById("lazer-total").innerText =
-          parseFloat(document.getElementById("lazer-total").innerText) +
-          transacao.valor;
-        break;
-      case "Outros":
-        document.getElementById("outros-total").innerText =
-          parseFloat(document.getElementById("outros-total").innerText) +
-          transacao.valor;
-        break;
-      default:
-        break;
+document.addEventListener('DOMContentLoaded', () => {
+  const categoriasBody = document.querySelector('#categorias-body');
+
+  async function fetchTransactionsByCategory() {
+    try {
+      const response = await fetch('http://localhost:3000/transactions');
+      if (!response.ok) {
+        throw new Error('Erro ao buscar transações');
+      }
+      const transactions = await response.json();
+
+      const categorias = {};
+
+      transactions.forEach((transaction) => {
+        const { category, value } = transaction;
+        if (categorias[category]) {
+          categorias[category] += parseFloat(value);
+        } else {
+          categorias[category] = parseFloat(value);
+        }
+      });
+
+      categoriasBody.innerHTML = '';
+
+      for (const categoria in categorias) {
+        const row = document.createElement('tr');
+        const categoriaCell = document.createElement('td');
+        categoriaCell.textContent = categoria;
+        row.appendChild(categoriaCell);
+        const valorCell = document.createElement('td');
+        const formattedValue = categorias[categoria].toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        valorCell.textContent = formattedValue;
+        row.appendChild(valorCell);
+        categoriasBody.appendChild(row);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar transações:', error);
     }
-  });
+  }
+
+  fetchTransactionsByCategory();
+});
