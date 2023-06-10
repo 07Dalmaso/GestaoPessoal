@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   formMongo.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const date = event.target.elements['transaction-date'].value;
+    const date = moment(event.target.elements['transaction-date'].value, 'YYYY-MM-DD').format('DD/MM/YYYY');
     const description = event.target.elements['transaction-description'].value;
     const value = event.target.elements['transaction-value'].value;
     const category = event.target.elements['transaction-category'].value;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const row = document.createElement('tr');
 
           const dateCell = document.createElement('td');
-          dateCell.textContent = transaction.date;
+          dateCell.textContent = moment(transaction.date).format('DD/MM/YYYY');
           row.appendChild(dateCell);
 
           const descriptionCell = document.createElement('td');

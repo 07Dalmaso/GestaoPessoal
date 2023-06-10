@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const app = express();
 app.use(cors());
@@ -31,7 +32,7 @@ app.post('/transactions', async (req, res) => {
     const { date, description, value, category } = req.body;
 
     const transaction = new Transaction({
-      date: new Date(date),
+      date: moment(date, 'DD/MM/YYYY').toDate(),
       description,
       value,
       category,
