@@ -1,137 +1,169 @@
 <!doctype html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Finanças</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
   <link rel="stylesheet" href="index.css">
   <script src="index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $.get("http://localhost:3000/transactions", function (data) {
+        // Total de transações realizadas
+        var totalTransacoes = data.length;
+        $("#transacoes-realizadas").text(totalTransacoes);
+
+        // Valor total das transações
+        var valorTotal = 0;
+        for (var i = 0; i < data.length; i++) {
+          valorTotal += data[i].value;
+        }
+        $("#valor-total-transacoes").text("R$ " + valorTotal.toFixed(2));
+
+        // Categoria mais gasta
+        var categorias = {};
+        var categoriaMaisGasta = "";
+        var valorCategoriaMaisGasta = 0;
+
+        for (var i = 0; i < data.length; i++) {
+          var categoria = data[i].category;
+          var valor = data[i].value;
+
+          if (categoria in categorias) {
+            categorias[categoria] += valor;
+          } else {
+            categorias[categoria] = valor;
+          }
+
+          if (categorias[categoria] > valorCategoriaMaisGasta) {
+            categoriaMaisGasta = categoria;
+            valorCategoriaMaisGasta = categorias[categoria];
+          }
+        }
+
+        $("#categoria-mais-gasta").text(categoriaMaisGasta);
+      });
+    });
+  </script>
 </head>
-
-
-<header>
-  <h1>Minhas Finanças</h1>
-  <nav>
-    <ul>
-      <!-- <li><a href="home/home.html">Perfil</a></li> -->
-      <li><a href="dashboard/dashboard.html">Dashboard</a></li>
-      <li><a href="transacoes/transacoes.html">Transações</a></li>
-      <li><a href="categorias/categorias.html">Categorias</a></li>
-      <li><a href="cartoes/cartoes.html">Meus Cartões</a></li>
-      <li><a href="investimento/investimento.html">Investimentos</a></li>
-      <li><a href="relatorios/relatorios.html">Relatórios</a></li>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <button class="profile-button">
-
-        <a href="home/home.html">
-          <img src="./img/foto.jpg" alt="Foto de perfil">
-        </a>
-      </button>
-
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <section class="summary">
-    <br><br><br>
-    <h2>Resumo das finanças</h2>
-    <br><br><br>
-    <div class="summary-box">
-      <div class="summary-item">
-        <h3>Saldo</h3>
-        <p id="teste">R$ -5.000,00</p>
-      </div>
-      <div class="summary-item">
-        <h3>Receitas</h3>
-        <p>R$ 10.000,00</p>
-      </div>
-      <div class="summary-item">
-        <h3>Despesas</h3>
-        <p>R$ 5.000,00</p>
-      </div>
-    </div>
-  </section>
-  <br>
-  <section class="summary">
-    <br><br><br>
-    <h2>Resumo dos cartões</h2>
-    <br><br><br>
-    <div class="summary-box">
-      <div class="summary-item">
-        <h3>Limite total</h3>
-        <p id="limite-total">R$ 20.000,00</p>
-      </div>
-      <div class="summary-item">
-        <h3>Limite utilizado</h3>
-        <p id="limite-utilizado">R$ 7.500,00</p>
-      </div>
-      <div class="summary-item">
-        <h3>Limite disponível</h3>
-        <p id="limite-disponivel">R$ 12.500,00</p>
-      </div>
-    </div>
-  </section>
-  <br>
-  <section class="summary">
-    <br><br><br>
-    <h2>Resumo das transações</h2>
-    <br><br><br>
-    <div class="summary-box">
-      <div class="summary-item">
-        <h3>Transações realizadas</h3>
-        <p id="transacoes-realizadas">15</p>
-      </div>
-      <div class="summary-item">
-        <h3>Valor total das transações</h3>
-        <p id="valor-total-transacoes">R$ 8.500,00</p>
-      </div>
-      <div class="summary-item">
-        <h3>Transações pendentes</h3>
-        <p id="transacoes-pendentes">2</p>
-      </div>
-    </div>
-  </section>
-  <br>
-  <section class="summary">
-    <br><br><br>
-    <h2>Resumo dos investimentos</h2>
-    <br><br><br>
-    <div class="summary-box">
-      <div class="summary-item">
-        <h3>Total investido</h3>
-        <p id="total-investido">R$ 30.000,00</p>
-      </div>
-      <div class="summary-item">
-        <h3>Valor atual</h3>
-        <p id="valor-atual">R$ 32.500,00</p>
-      </div>
-      <div class="summary-item">
-        <h3>Lucro/Prejuízo</h3>
-        <p id="lucro-prejuizo">R$ 2.500,00</p>
-      </div>
-    </div>
-  </section>
-  <br></div>
-  </section>
-  <br>
-  <br>
-
-</main>
-
-<footer>
-  <p>Desenvolvido por: <a href="#">Lucas Santos Dalmaso,Joao Victor Mothe Vantil</a></p>
-</footer>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
 <body>
+  <header>
+    <h1>Minhas Finanças</h1>
+    <nav>
+      <ul>
+        <!-- <li><a href="home/home.html">Perfil</a></li> -->
+        <li><a href="dashboard/dashboard.html">Dashboard</a></li>
+        <li><a href="transacoes/transacoes.html">Transações</a></li>
+        <li><a href="categorias/categorias.html">Categorias</a></li>
+        <li><a href="cartoes/cartoes.html">Meus Cartões</a></li>
+        <li><a href="investimento/investimento.html">Investimentos</a></li>
+        <li><a href="relatorios/relatorios.html">Relatórios</a></li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="profile-button">
+          <a href="home/home.html">
+            <img src="./img/foto.jpg" alt="Foto de perfil">
+          </a>
+        </button>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <section class="summary">
+            <h2>Resumo das finanças</h2>
+            <table class="table">
+              <tr>
+                <th>Saldo</th>
+                <td id="teste">R$ -5.000,00</td>
+              </tr>
+              <tr>
+                <th>Receitas</th>
+                <td>R$ 10.000,00</td>
+              </tr>
+              <tr>
+                <th>Despesas</th>
+                <td>R$ 5.000,00</td>
+              </tr>
+            </table>
+          </section>
+        </div>
+        <div class="col">
+          <section class="summary">
+            <h2>Resumo dos cartões</h2>
+            <table class="table">
+              <tr>
+                <th>Limite total</th>
+                <td id="limite-total">R$ 20.000,00</td>
+              </tr>
+              <tr>
+                <th>Limite utilizado</th>
+                <td id="limite-utilizado">R$ 7.500,00</td>
+              </tr>
+              <tr>
+                <th>Limite disponível</th>
+                <td id="limite-disponivel">R$ 12.500,00</td>
+              </tr>
+            </table>
+          </section>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <section class="summary">
+            <h2>Resumo das transações</h2>
+            <table class="table">
+              <tr>
+                <th>Transações realizadas</th>
+                <td id="transacoes-realizadas">-</td>
+              </tr>
+              <tr>
+                <th>Valor total das transações</th>
+                <td id="valor-total-transacoes">-</td>
+              </tr>
+              <tr>
+                <th>Categoria mais gasta</th>
+                <td id="categoria-mais-gasta">-</td>
+              </tr>
+            </table>
+          </section>
+        </div>
+        <div class="col">
+          <section class="summary">
+            <h2>Resumo dos investimentos</h2>
+            <table class="table">
+              <tr>
+                <th>Total investido</th>
+                <td id="total-investido">R$ 30.000,00</td>
+              </tr>
+              <tr>
+                <th>Valor atual</th>
+                <td id="valor-atual">R$ 32.500,00</td>
+              </tr>
+              <tr>
+                <th>Lucro/Prejuízo</th>
+                <td id="lucro-prejuizo">R$ 2.500,00</td>
+              </tr>
+            </table>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Desenvolvido por: <a href="#">Lucas Santos Dalmaso, Joao Victor Mothe Vantil</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
 
