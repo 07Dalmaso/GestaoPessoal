@@ -98,3 +98,8 @@ header {
   .table tbody td {
     vertical-align: middle;
   }
+
+  .table-container {
+    height: 400px; /* Defina a altura desejada */
+    overflow: auto;
+  }

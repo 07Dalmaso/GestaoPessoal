@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         const transactions = await response.json();
 
+        // Ordenar as transações por data
+        ordenarPorData(transactions);
+
         tableBody.innerHTML = '';
 
         transactions.forEach((transaction) => {
@@ -67,6 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Erro ao buscar transações:', error);
     }
+  }
+
+  // Função para ordenar a lista por data
+  function ordenarPorData(lista) {
+    lista.sort(function(a, b) {
+      var dataA = new Date(a.date);
+      var dataB = new Date(b.date);
+      return dataA - dataB;
+    });
   }
 
   updateTransactionList();

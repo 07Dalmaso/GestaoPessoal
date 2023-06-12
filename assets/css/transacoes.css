@@ -98,3 +98,8 @@ nav a:hover {
 .table tbody td {
   vertical-align: middle;
 }
+
+.table-container {
+  height: 500px; /* Defina a altura desejada */
+  overflow: auto;
+}

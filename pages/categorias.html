@@ -16,42 +16,49 @@
           <li><a href="index.html">Voltar</a></li>
         </ul>
       </nav>
-    </div>
   </header>
   <main class="container">
-    <section id="categorias" class="transactions">
-      <h2>Gastos por Categoria</h2>
-      <div class="transactions-box">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Categoria</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody id="categorias-body">
-          </tbody>
-        </table>
+    <div class="row">
+      <div class="col-md-6">
+        <section id="categorias" class="transactions">
+          <h2>Gastos por Categoria</h2>
+          <div class="transactions-box">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody id="categorias-body">
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
-    </section>
-    <section id="transacoes" class="transactions-list">
-      <h2>Lista de Transações por Categoria</h2>
-      <div class="transactions-box">
-        <label for="select-categoria" class="form-label">Selecione uma Categoria:</label>
-        <select id="select-categoria" class="form-select"></select>
-        <table id="transacoes-categoria" class="table">
-          <thead>
-            <tr>
-              <th scope="col">Data</th>
-              <th scope="col">Descrição</th>
-              <th scope="col">Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+      <div class="col-md-6">
+        <section id="transacoes" class="transactions-list">
+          <h2>Lista de Transações por Categoria</h2>
+          <div class="transactions-box">
+            <label for="select-categoria" class="form-label">Selecione uma Categoria:</label>
+            <select id="select-categoria" class="form-select"></select>
+            <div class="table-container">
+              <table id="transacoes-categoria" class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="../assets/js/categorias.js"></script>
