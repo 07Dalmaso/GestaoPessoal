@@ -27,6 +27,18 @@ const transactionSchema = new mongoose.Schema({
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
 
+const UserSchema = new mongoose.Schema({
+  password: { type: String, required: true },
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  endereco: { type: String, required: true },
+  telefone: { type: String, required: true },
+});
+
+const User = mongoose.model('User', UserSchema);
+
+
+
 app.post('/transactions', async (req, res) => {
   try {
     const { date, description, value, category } = req.body;
@@ -55,6 +67,45 @@ app.get('/transactions', async (req, res) => {
   } catch (error) {
     console.error('Erro ao buscar transações:', error);
     res.status(500).send('Erro ao buscar transações');
+  }
+});
+
+app.post('/user', async (req, res) => {
+  try {
+    const { password, name, email, endereco, telefone} = req.body;
+
+    const user = new User({
+      password,
+      name,
+      email,
+      endereco,
+      telefone,
+    });
+
+    await user.save();
+
+    res.status(201).send(user);
+  } catch (error) {
+    console.error('Erro ao adicionar user:', error);
+    res.status(500).send('Erro ao adicionar user');
+  }
+});
+
+app.get('/verificar-login', async (req, res) => {
+  alert();
+  try {
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username });
+
+    if (user && user.password === password) {
+      res.json({ success: true });
+    } else {
+      res.json({ success: false });
+    }
+  } catch (error) {
+    console.error('Erro ao verificar login:', error);
+    res.status(500).send('Erro ao verificar login');
   }
 });
 

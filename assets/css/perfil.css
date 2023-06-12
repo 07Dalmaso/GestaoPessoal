@@ -1,0 +1,100 @@
+body {
+    background-color: #9b9c9d; /* Azul escuro */
+    background-image: radial-gradient(#cecece 20%, #000000 80%); /* Gradiente de azul claro para escuro */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+.container {
+	width: 500px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px #999;
+}
+
+h1 {
+	text-align: center;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+input[type="text"], input[type="email"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border: none;
+}
+
+button {
+	padding: 10px;
+	border: none;
+	background-color: #007bff;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0069d9;
+}
+
+#mensagem {
+	margin-top: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+/*menu */
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/*menu */
+
+/* imagem perfil */
+img {
+	display: block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+	box-shadow: 0px 0px 5px #999;
+}
+
+/* imagem perfil */
