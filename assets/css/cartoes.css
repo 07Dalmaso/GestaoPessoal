@@ -29,6 +29,15 @@
   margin-bottom: 20px;
 }
 
+.card-number input {
+  display: inline-block;
+  width: 75px;
+  height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  line-height: 40px;
+}
 .card-number span {
   display: inline-block;
   width: 75px;
@@ -193,14 +202,21 @@ text-decoration: underline;
   font-size: 18px;
   color:#fff;
 }
-
 .card-expiry {
+  position: absolute;
+  bottom:30px;
+  left: 30px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.678);
+}
+
+/* .card-expiry {
   position: absolute;
   bottom: 40px;
   left: 30px;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.678);
-}
+} */
 
 .card-cvv {
   position: absolute;
