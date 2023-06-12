@@ -35,7 +35,6 @@ const financeSchema = new mongoose.Schema({
 
 const Finance = mongoose.model('Finance', financeSchema);
 
-
 const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
@@ -45,8 +44,6 @@ const UserSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', UserSchema);
-
-
 
 app.post('/transactions', async (req, res) => {
   try {
@@ -81,7 +78,7 @@ app.get('/transactions', async (req, res) => {
 
 app.post('/user', async (req, res) => {
   try {
-    const { password, name, email, endereco, telefone} = req.body;
+    const { password, name, email, endereco, telefone } = req.body;
 
     const user = new User({
       password,
@@ -95,8 +92,8 @@ app.post('/user', async (req, res) => {
 
     res.status(201).send(user);
   } catch (error) {
-    console.error('Erro ao adicionar user:', error);
-    res.status(500).send('Erro ao adicionar user');
+    console.error('Erro ao adicionar usuário:', error);
+    res.status(500).send('Erro ao adicionar usuário');
   }
 });
 
@@ -130,8 +127,7 @@ app.get('/finances', async (req, res) => {
   }
 });
 
-app.get('/verificar-login', async (req, res) => {
-  alert();
+app.post('/verificar-login', async (req, res) => {
   try {
     const { username, password } = req.body;
 
