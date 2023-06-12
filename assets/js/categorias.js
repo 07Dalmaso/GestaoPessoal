@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
           (transaction) => transaction.category === categoriaSelecionada
         );
 
+        transacoesFiltradas.sort((a, b) => new Date(a.date) - new Date(b.date));
+
         transacoesTable.innerHTML = '';
 
         if (transacoesFiltradas.length > 0) {

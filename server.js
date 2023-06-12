@@ -29,6 +29,14 @@ const transactionSchema = new mongoose.Schema({
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
 
+const financeSchema = new mongoose.Schema({
+  date: { type: Date, required: true },
+  description: { type: String, required: true },
+  value: { type: Number, required: true },
+});
+
+const Finance = mongoose.model('Finance', financeSchema);
+
 const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
@@ -38,8 +46,6 @@ const UserSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', UserSchema);
-
-
 
 app.post('/transactions', async (req, res) => {
   try {
@@ -74,7 +80,7 @@ app.get('/transactions', async (req, res) => {
 
 app.post('/user', async (req, res) => {
   try {
-    const { password, name, email, endereco, telefone} = req.body;
+    const { password, name, email, endereco, telefone } = req.body;
 
     const user = new User({
       password,
@@ -88,8 +94,38 @@ app.post('/user', async (req, res) => {
 
     res.status(201).send(user);
   } catch (error) {
-    console.error('Erro ao adicionar user:', error);
-    res.status(500).send('Erro ao adicionar user');
+    console.error('Erro ao adicionar usuário:', error);
+    res.status(500).send('Erro ao adicionar usuário');
+  }
+});
+
+app.post('/finances', async (req, res) => {
+  try {
+    const { date, description, value } = req.body;
+
+    const finance = new Finance({
+      date: moment(date, 'DD/MM/YYYY').toDate(),
+      description,
+      value,
+    });
+
+    await finance.save();
+
+    res.status(201).send(finance);
+  } catch (error) {
+    console.error('Erro ao adicionar receita:', error);
+    res.status(500).send('Erro ao adicionar receita');
+  }
+});
+
+app.get('/finances', async (req, res) => {
+  try {
+    const finances = await Finance.find();
+
+    res.send(finances);
+  } catch (error) {
+    console.error('Erro ao buscar receitas:', error);
+    res.status(500).send('Erro ao buscar receitas');
   }
 });
 

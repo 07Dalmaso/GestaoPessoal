@@ -35,3 +35,31 @@ $(document).ready(function () {
       $("#categoria-mais-gasta").text(categoriaMaisGasta);
     });
   });
+
+
+  $(document).ready(function () {
+    $.get("http://localhost:3000/finances", function (finances) {
+      // Receitas
+      var receitas = 0;
+      for (var i = 0; i < finances.length; i++) {
+        if (finances[i].value > 0) {
+          receitas += finances[i].value;
+        }
+      }
+      $("#receitas").text("R$ " + receitas.toFixed(2));
+  
+      $.get("http://localhost:3000/transactions", function (transactions) {
+        // Despesas
+        var despesas = 0;
+        for (var i = 0; i < transactions.length; i++) {
+          despesas += Math.abs(transactions[i].value);
+        }
+        
+        $("#despesas").text("R$ " + despesas.toFixed(2));
+        
+        // Saldo
+        var saldo = receitas - despesas;
+        $("#saldo").text("R$ " + saldo.toFixed(2));
+      });
+    });
+  });

@@ -1,43 +1,93 @@
-var randomScalingFactor = function () {
-    return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
-};
-var randomColorFactor = function () {
-    return Math.round(Math.random() * 255);
-};
+let chart;
 
-var barChartData = {
-    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-    datasets: [{
-        label: 'Receita',
-        backgroundColor: "rgba(0,255,0,1)",
-        data: [Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000), Math.floor(Math.random() * 5000),],
-        borderColor: 'white',
-        borderWidth: 2
-    }, {
-        label: 'Despesa',
-        backgroundColor: "rgba(255,0,0,1)",
-        data: [Math.floor((Math.random() * -5000)), ((Math.random() * 0) - 2000), ((Math.random() * 0) - 750), ((Math.random() * 0) - 5000), ((Math.random() * 0) - 5000), ((Math.random() * 0) - 5000), ((Math.random() * 0) - 5000),],
-        borderColor: 'white',
-        borderWidth: 2
-    },]
-};
-var myBar = null;
-window.onload = function () {
-    var ctx = document.getElementById("canvas").getContext("2d");
-    myBar = new Chart(ctx, {
+async function loadChartData(year) {
+  try {
+    const financesResponse = await axios.get('http://localhost:3000/finances');
+    const transactionsResponse = await axios.get('http://localhost:3000/transactions');
+
+    const finances = financesResponse.data;
+    const transactions = transactionsResponse.data;
+
+    const filteredFinances = finances.filter(finance => {
+      const financeYear = moment(finance.date).year();
+      return financeYear === year;
+    });
+
+    const filteredTransactions = transactions.filter(transaction => {
+      const transactionYear = moment(transaction.date).year();
+      return transactionYear === year;
+    });
+
+    const data = [];
+    for (let month = 1; month <= 12; month++) {
+      const monthFinances = filteredFinances.filter(finance => {
+        const financeMonth = moment(finance.date).get('month') + 1;
+        return financeMonth === month;
+      });
+
+      const monthTransactions = filteredTransactions.filter(transaction => {
+        const transactionMonth = moment(transaction.date).get('month') + 1;
+        return transactionMonth === month;
+      });
+
+      const totalRevenue = monthFinances.reduce((sum, finance) => sum + finance.value, 0);
+      const totalExpenses = monthTransactions.reduce((sum, transaction) => sum + transaction.value, 0);
+
+      data.push({
+        month: moment().month(month - 1).locale('pt-br').format('MMMM').charAt(0).toUpperCase() + moment().month(month - 1).locale('pt-br').format('MMMM').slice(1),
+        revenue: totalRevenue,
+        expenses: totalExpenses
+      });
+    }
+
+    const options = {
+      chart: {
         type: 'bar',
-        data: barChartData,
-        options: {
-            responsive: true,
+        height: '500px' // Ajuste a altura do gráfico conforme necessário
+      },
+      series: [{
+        name: 'Receitas',
+        data: data.map(item => item.revenue)
+      }, {
+        name: 'Despesas',
+        data: data.map(item => item.expenses)
+      }],
+      xaxis: {
+        categories: data.map(item => item.month)
+      },
+      yaxis: {
+        labels: {
+          formatter: function (value) {
+            return Math.abs(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+          }
         }
-    });
-};
+      }
+    };
 
-$('#randomizeData').click(function () {
-    $.each(barChartData.datasets, function (i, dataset) {
-        dataset.backgroundColor = 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
-        dataset.data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+    if (chart) {
+      chart.updateOptions(options);
+    } else {
+      chart = new ApexCharts(document.querySelector('#chart'), options);
+      chart.render();
+    }
+  } catch (error) {
+    console.error('Erro ao carregar dados do gráfico:', error);
+  }
+}
 
-    });
-    myBar.update();
-});
+async function updateYearSelect() {
+  const yearSelect = document.querySelector('#year-select');
+  const currentYear = moment().year();
+  yearSelect.value = currentYear;
+  await loadChartData(currentYear);
+}
+
+async function updateChart() {
+  const yearSelect = document.querySelector('#year-select');
+  const selectedYear = parseInt(yearSelect.value);
+  await loadChartData(selectedYear);
+}
+
+document.addEventListener('DOMContentLoaded', updateYearSelect);
+const yearSelect = document.querySelector('#year-select');
+yearSelect.addEventListener('change', updateChart);
