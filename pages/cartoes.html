@@ -10,6 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="../assets/css/cartoes.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../assets/js/cartoes.js"></script>
 </head>
 
@@ -31,7 +32,32 @@
             </ul>
         </nav>
     </header>
-    <br><br><br>
+    <br>
+
+    <div class="row" style="display: flex; justify-content: center; height: 100vh;">
+        <form id="cartao-form">
+            <div class="card">
+                <div class="card-type"><i class="fab fa-cc-visa"></i> American Express</div>
+                <div class="card-number">
+                    <span>****</span>
+                    <span>****</span>
+                    <span>****</span>
+                    <input type="text" id="card-number-input">
+                </div>
+                <div class="card-name">
+                    <label for="card-name-input">Nome no Cartão:</label>
+                    <input type="text" id="card-name-input">
+                </div>
+                <div class="card-expiry">
+                    <label for="card-expiry-input">Data de Validade:</label>
+                    <input type="text" id="card-expiry-input">
+                </div>
+            </div>
+            <br>
+            <button type="submit">Adicionar Cartão</button>
+        </form>
+    </div>
+    
 
     <div class="card-container">
         <div class="row">
@@ -76,11 +102,11 @@
                 </div>
             </div>
             <br><br>
-            <div class="card-limit">Limite de crédito: <span id="saldoAtual1">R$  1000</span>
-            <br><br>
+            <div class="card-limit">Limite de crédito: <span id="saldoAtual1">R$ 1000</span>
+                <br><br>
                 <label for="saldo">Saldo:</label>
                 <input type="range" id="saldo1" value="1000" min="0" max="5000" step="100" oninput="atualizarSaldo1()">
-               
+
             </div>
         </div>
         <div class="row">
@@ -101,7 +127,7 @@
                 </div>
             </div>
             <br><br>
-            <div class="card-limit">Limite de crédito: <span id="saldoAtual2">R$ 1000</span>         
+            <div class="card-limit">Limite de crédito: <span id="saldoAtual2">R$ 1000</span>
                 <br><br>
                 <label for="saldo2">Saldo:</label>
                 <input type="range" id="saldo2" value="1000" min="0" max="5000" step="100" oninput="atualizarSaldo2()">

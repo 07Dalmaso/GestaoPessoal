@@ -2,10 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const moment = require('moment');
-
+const bodyParser = require('body-parser');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 mongoose.connect('mongodb+srv://Joao:123@tecweb.m4o4lak.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -130,8 +132,7 @@ app.get('/finances', async (req, res) => {
 app.post('/verificar-login', async (req, res) => {
   try {
     const { username, password } = req.body;
-
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ name : username });
 
     if (user && user.password === password) {
       res.json({ success: true });
@@ -141,6 +142,40 @@ app.post('/verificar-login', async (req, res) => {
   } catch (error) {
     console.error('Erro ao verificar login:', error);
     res.status(500).send('Erro ao verificar login');
+  }
+});
+
+
+// Rota para adicionar um novo cartão ao banco de dados
+app.post('/cartoes', async (req, res) => {
+  try {
+    // Conectar ao banco de dados MongoDB
+    const client = await mongodb.connect('mongodb://localhost:27017');
+    const db = client.db('meus_cartoes');
+    
+    // Obter os dados do cartão do corpo da solicitação
+    const { cardType, cardNumber, cardName, cardExpiry, cardCVV } = req.body;
+    
+    // Inserir os dados do cartão na coleção 'cartoes'
+    const result = await db.collection('cartoes').insertOne({
+      cardType,
+      cardNumber,
+      cardName,
+      cardExpiry,
+      cardCVV
+    });
+    
+    // Responder com a resposta do banco de dados
+    res.json({
+      success: true,
+      message: 'Cartão adicionado com sucesso!'
+    });
+  } catch (error) {
+    console.error('Erro ao adicionar cartão:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao adicionar cartão'
+    });
   }
 });
 
