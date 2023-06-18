@@ -25,6 +25,8 @@ const transactionSchema = new mongoose.Schema({
   description: { type: String, required: true },
   value: { type: Number, required: true },
   category: { type: String, required: true },
+  pagamento: { type: String, required: false },
+  cardTp: { type: String, required: false },
 });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
@@ -63,13 +65,15 @@ const Cartoes = mongoose.model('Cartoes', CartoesSchema);
 
 app.post('/transactions', async (req, res) => {
   try {
-    const { date, description, value, category } = req.body;
+    const { date, description, value, category, pagamento, cardTp } = req.body;
 
     const transaction = new Transaction({
       date: moment(date, 'DD/MM/YYYY').toDate(),
       description,
       value,
       category,
+      pagamento,
+      cardTp,
     });
 
     await transaction.save();

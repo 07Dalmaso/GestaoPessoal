@@ -6,6 +6,7 @@
     <title>Transações</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../assets/css/transacoes.css">
   </head>
   <body>
@@ -32,6 +33,19 @@
                   <div class="mb-3">
                     <label for="transaction-description" class="form-label">Descrição:</label>
                     <input type="text" class="form-control" id="transaction-description" name="transaction-description">
+                  </div>
+                  <div class="mb-3">
+                    <label for="transaction-pag" class="form-label">Forma de Pagamento:</label>
+                    <select class="form-select" id="transaction-pag" name="transaction-pag">
+                      <option value="PIX">PIX</option>
+                      <option value="Cartão">Cartão</option>
+                      <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                  </div>
+                  <div class="mb-3" id="cartao-container">
+                    <label for="tipos-cartao-dropdown" class="form-label">Cartão:</label>
+                    <select class="form-select" id="tipos-cartao-dropdown" name="tipos-cartao-dropdown">
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="transaction-value" class="form-label">Valor:</label>
@@ -65,6 +79,9 @@
                       <th scope="col">Descrição</th>
                       <th scope="col">Valor</th>
                       <th scope="col">Categoria</th>
+                      <th scope="col">Forma de Pagamento</th>
+                      <th scope="col">Cartão</th>
+                      
                     </tr>
                   </thead>
                   <tbody id="transaction-table-body">
