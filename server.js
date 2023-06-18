@@ -47,6 +47,20 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+
+const CartoesSchema = new mongoose.Schema({
+
+  cardType: { type: String, required: false },
+  cardNumber: { type: String, required: true },
+  cardName: { type: String, required: true },
+  cardExpiry: { type: String, required: true },
+  cardCVV: { type: String, required: false },
+  cardSaldo: { type: String, required: false },
+  cardTp: { type: String, required: false },
+});
+
+const Cartoes = mongoose.model('Cartoes', CartoesSchema);
+
 app.post('/transactions', async (req, res) => {
   try {
     const { date, description, value, category } = req.body;
@@ -149,36 +163,39 @@ app.post('/verificar-login', async (req, res) => {
 // Rota para adicionar um novo cartão ao banco de dados
 app.post('/cartoes', async (req, res) => {
   try {
-    // Conectar ao banco de dados MongoDB
-    const client = await mongodb.connect('mongodb://localhost:27017');
-    const db = client.db('meus_cartoes');
-    
-    // Obter os dados do cartão do corpo da solicitação
-    const { cardType, cardNumber, cardName, cardExpiry, cardCVV } = req.body;
-    
-    // Inserir os dados do cartão na coleção 'cartoes'
-    const result = await db.collection('cartoes').insertOne({
+    const { cardType, cardNumber, cardName, cardExpiry, cardCVV, cardSaldo, cardTp} = req.body;
+
+    const cartoes = new Cartoes({
       cardType,
       cardNumber,
       cardName,
       cardExpiry,
-      cardCVV
+      cardCVV,
+      cardSaldo, 
+      cardTp
     });
+
+    await cartoes.save();
+
+    res.status(201).json({ success: true, cartoes });
     
-    // Responder com a resposta do banco de dados
-    res.json({
-      success: true,
-      message: 'Cartão adicionado com sucesso!'
-    });
   } catch (error) {
-    console.error('Erro ao adicionar cartão:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Erro ao adicionar cartão'
-    });
+    console.error('Erro ao adicionar Cartão:', error);
+    res.status(500).send('Erro ao adicionar Cartão');
   }
 });
 
+app.get('/cartoes', async (req, res) => {
+  try {
+    const cartoes = await Cartoes.find();
+    console.log(cartoes);
+
+    res.json({ success: true, cartoes });
+  } catch (error) {
+    console.error('Erro ao buscar cartoes:', error);
+    res.status(500).send('Erro ao buscar cartoes');
+  }
+});
 const port = 3000;
 app.listen(port, () => {
   console.log(`Servidor Express em execução na porta ${port}`);

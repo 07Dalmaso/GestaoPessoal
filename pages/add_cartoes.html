@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meus Cartões de Crédito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-PzZwYg6ig1nV7FhBf9XDC7MNO6n/tU6ffPQ6W8uVw4eNpGh7TI98xKPyu9fAm/cSCK6Ue7V2QBJEjLwBZ4a6Og=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../assets/css/cartoes.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../assets/js/cartoes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+</head>
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <header>
+        <h1> Adicionar Cartões</h1>
+        <nav>
+            <ul>
+                <li><a href="cartoes.html">Voltar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br>
+    <form id="cartao-form">
+        <div class="row" style="display: flex; justify-content: center;">
+            <div class="card">
+                <div class="card-front">
+                    <div class="card-type" id="card-type"></div>
+                    <div class="card-number">
+                        <span>****</span>
+                        <span>****</span>
+                        <span>****</span>
+                        <span id="card-number-span-test"></span>
+                    </div>
+                    <div class="card-name" id="card-name"></div>
+                    <div class="card-expiry" id="card-expiry"></div>
+                </div>
+                <div class="card-back">
+                    <div class="card-cvv" id="card-cvv"></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div id="linha" style="width: 100px; margin-right: 50px;">
+            <label for="card-type-select">Bandeira do Cartão:</label>
+            <input type="text" id="card-type-input" style="width: 100%;" placeholder="Digite...">
+        </div>
+        <div id="linha" style="width: 100px; margin-right: 50px;">
+            <label for="card-number-input">Número no Cartão:</label>
+            <input type="text" id="card-number-input" style="width: 100%;" placeholder="Digite...">
+        </div>
+        <div id="linha" style="width: 100px; margin-right: 50px;">
+            <label for="card-name-input">Nome no Cartão:</label>
+            <input type="text" id="card-name-input" style="width: 100%;" placeholder="Digite...">
+        </div>
+        <div id="linha" style="width: 100px; margin-right: 50px;">
+            <label for="card-expiry-input">Data de Validade:</label>
+            <input type="text" id="card-expiry-input" style="width: 100%;" placeholder="Digite...">
+        </div>
+        <div id="linha" style="width: 100px; margin-right: 50px;">
+            <label for="card-cvv-input">Código de Segurança:</label>
+            <input type="text" id="card-cvv-input" style="width: 100%;" placeholder="Digite...">
+        </div>
+        <div id="linha" style="width: 100px; margin-right: 50px;">
+            <label for="card-saldo-input">Saldo:</label>
+            <input type="text" id="card-saldo-input" style="width: 100%;" placeholder="Digite...">
+        </div>
+        <div id="linha" style="width: 100px; margin-right: 50px;">
+            <label for="card-tp-input">Apelido:</label>
+            <input type="text" id="card-tp-input" style="width: 100%;" placeholder="Digite...">
+        </div>
+        
+        <button type="submit" >Adicionar Cartão</button>
+        <br><br><br>
+ 
+    </form>
+</body>
+
+</html>
