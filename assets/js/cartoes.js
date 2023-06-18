@@ -1,46 +1,19 @@
-
-// function atualizarSaldo() {
-
-//   var slider = document.getElementById("saldo");
-//   var saldo = document.getElementById("saldoAtual");
-//   saldo.innerHTML = 'R$ ' + " " + slider.value;
-
-// }
-
-// atualizarSaldo();
-
-// function atualizarSaldo1() {
-
-//   var slider = document.getElementById("saldo1");
-//   var saldo = document.getElementById("saldoAtual1");
-//   saldo.innerHTML = 'R$ ' + " " + slider.value;
-
-// }
-
-// atualizarSaldo1();
-
-// function atualizarSaldo2() {
-
-//   var slider = document.getElementById("saldo2");
-//   var saldo = document.getElementById("saldoAtual2");
-//   saldo.innerHTML = 'R$ ' + " " + slider.value;
-
-// }
-
-// atualizarSaldo2();
-
 $(document).ready(function () {
+
   $('#cartao-form').submit(function (event) {
     event.preventDefault();
 
     // Obter os dados do cartão do formulário
-    var cardType = $('#card-type').val();
-    var cardNumber = $('#card-number').val();
-    var cardName = $('#card-name').val();
-    var cardExpiry = $('#card-expiry').val();
-    var cardCVV = $('#card-cvv').val();
+    var cardType = $('#card-type-input').val();
+    var cardNumber = $('#card-number-input').val();
+    var cardName = $('#card-name-input').val();
+    var cardExpiry = $('#card-expiry-input').val();
+    var cardCVV = $('#card-cvv-input').val();
+    var cardSaldo = $('#card-saldo-input').val();
+    var cardTp = $('#card-tp-input').val();
 
-    // Enviar os dados do cartão para o servidor
+    console.log(cardType, cardNumber, cardName, cardExpiry, cardCVV, cardSaldo, cardTp);
+
     $.ajax({
       url: 'http://localhost:3000/cartoes',
       method: 'POST',
@@ -49,12 +22,14 @@ $(document).ready(function () {
         cardNumber: cardNumber,
         cardName: cardName,
         cardExpiry: cardExpiry,
-        cardCVV: cardCVV
+        cardCVV: cardCVV,
+        cardSaldo: cardSaldo,
+        cardTp: cardTp
       },
       success: function (response) {
         if (response.success) {
           alert('Cartão adicionado com sucesso!');
-          // Faça o que for necessário após adicionar o cartão
+          window.location.href ='cartoes.html';
         } else {
           alert('Erro ao adicionar cartão.');
         }
@@ -66,6 +41,96 @@ $(document).ready(function () {
   });
 });
 
+
+$(document).ready(function () {
+  usarDadosDosCartoes();
+
+  const campo1 = $('#card-number-span-test');
+  const campo2 = $('#card-number-input');
+  const campoNmInput = $('#card-name-input');
+  const cardNameDiv = $('#card-name');
+  const campoExpiryInput = $('#card-expiry-input');
+  const cardExpiryDiv = $('#card-expiry');
+  const campoCvvInput = $('#card-cvv-input');
+  const cardCvvDiv = $('#card-cvv');
+  const campoTypeInput = $('#card-type-input');
+  const cardTypeDiv = $('#card-type');
+
+  campo2.on('input', function () {
+    campo1.val(campo2.val());
+  });
+
+  campoNmInput.on('input', function () {
+    cardNameDiv.text(campoNmInput.val());
+  });
+
+  campoExpiryInput.on('input', function () {
+    cardExpiryDiv.text(campoExpiryInput.val());
+  });
+
+  campoCvvInput.on('input', function () {
+    cardCvvDiv.text(campoCvvInput.val());
+  });
+
+  campoTypeInput.on('input', function () {
+    cardTypeDiv.text(campoTypeInput.val());
+  });
+
+  const cardExpiryInput = $('#card-expiry-input');
+  cardExpiryInput.inputmask('99/99');
+
+});
+
+async function usarDadosDosCartoes() {
+  $.ajax({
+    url: 'http://localhost:3000/cartoes',
+    method: 'GET',
+    success: function (response) {
+      console.log('aqui', response);
+      if (response.success) {
+        const cartoes = response.cartoes;
+        const cardContainer = document.getElementById("card-container");
+        cartoes.forEach((cartao, index) => {
+          const cardDiv = document.createElement("div");
+          cardDiv.classList.add("row");
+          cardDiv.innerHTML = `
+                    <div class="card">
+                        <div class="card-front">
+                            <div class="card-type"><i class="fab fa-cc-visa"></i> ${cartao.cardType}</div>
+                            <div class="card-number">
+                                <span>****</span>
+                                <span>****</span>
+                                <span>****</span>
+                                <span>${cartao.cardNumber}</span>
+                            </div>
+                            <div class="card-name">${cartao.cardName}</div>
+                            <div class="card-expiry">${cartao.cardExpiry}</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-cvv">${cartao.cardCVV}</div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="card-limit">Limite de crédito: R$ ${cartao.cardSaldo}</span>
+                    </div>
+                    <div class="card-limit">Nome do cartão: ${cartao.cardTp}</span>
+                    </div>
+                `;
+          cardContainer.appendChild(cardDiv);
+        });
+      } else {
+        alert('Erro ao buscar cartões.');
+      }
+    },
+    error: function () {
+      alert('Ocorreu um erro ao processar a solicitação.');
+    }
+  });
+}
+
+function addCard(){
+  window.location.href = "add_cartoes.html";
+};
 
 
 

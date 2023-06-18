@@ -16,7 +16,7 @@
 .card-body {
   display: flex;
   flex-direction: column;
-/*  justify-content: space-between;*/
+ /* justify-content: space-between; */
   justify-content: unset;
   height: 100%;
   margin-top: -20px;
@@ -29,7 +29,7 @@
   margin-bottom: 20px;
 }
 
-.card-number input {
+.card-number input, span {
   display: inline-block;
   width: 75px;
   height: 40px;
@@ -38,7 +38,7 @@
   background-color: #f2f2f2;
   line-height: 40px;
 }
-.card-number span {
+/* .card-number span {
   display: inline-block;
   width: 75px;
   height: 40px;
@@ -46,7 +46,7 @@
   border-radius: 5px;
   background-color: #f2f2f2;
   line-height: 40px;
-}
+} */
 
 .card-info {
   display: flex;
@@ -62,8 +62,8 @@
   color: #666;
 }
 
-.card-holder span,
-.card-expiry span {
+.card-holder span, input,
+.card-expiry span, input {
   font-size: 16px;
   font-weight: bold;
   color: #666;
@@ -240,4 +240,36 @@ text-decoration: underline;
 
 .card-rewards {
   margin-bottom: 5px;
+}
+
+
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+#linha{
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
+
+button[type="submit"], #adicionar-cartao-button {
+  background-color: #111012;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 3px;
 }
