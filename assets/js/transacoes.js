@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const description = event.target.elements['transaction-description'].value;
     const value = event.target.elements['transaction-value'].value;
     const category = event.target.elements['transaction-category'].value;
+    const cardTp = event.target.elements['tipos-cartao-dropdown'].value;
+    const pagamento = event.target.elements['transaction-pag'].value;
 
     try {
       const response = await fetch('http://localhost:3000/transactions', {
@@ -16,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ date, description, value, category }),
+        body: JSON.stringify({ date, description, value, category, pagamento, cardTp }),
       });
 
       if (response.ok) {
@@ -61,6 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const categoryCell = document.createElement('td');
           categoryCell.textContent = transaction.category;
           row.appendChild(categoryCell);
+          
+          const pagamentoCell = document.createElement('td');
+          pagamentoCell.textContent = transaction.pagamento;
+          row.appendChild(pagamentoCell);
+
+          const cardTpCell = document.createElement('td');
+          cardTpCell.textContent = transaction.cardTp;
+          row.appendChild(cardTpCell);
 
           tableBody.appendChild(row);
         });
@@ -82,4 +92,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   updateTransactionList();
+});
+
+
+$(document).ready(function () {
+  $.get("http://localhost:3000/cartoes", function (response) {
+    if (response.success) {
+      var cartoes = response.cartoes;
+      var tiposCartao = [];
+
+      // Extrair os tipos de cartão únicos
+      cartoes.forEach(function (cartao) {
+        console.log(cartao);
+        var cardTp = cartao.cardTp;
+        if (cardTp && !tiposCartao.includes(cardTp)) {
+          tiposCartao.push(cardTp);
+        }
+      });
+
+      // Gerar as opções do dropdown list
+      var dropdownList = $('#tipos-cartao-dropdown');
+      tiposCartao.forEach(function (tipo) {
+        console.log(tipo);
+        var option = $('<option></option>').text(tipo);
+        dropdownList.append(option);
+      });
+    }
+  });
+});
+
+$(document).ready(function() {
+  $('#cartao-container').hide();
+
+  $('#transaction-pag').on('change', function() {
+    var selectedOption = $(this).val();
+    console.log(selectedOption);
+
+    if (selectedOption === 'Cartão') {
+      $('#cartao-container').show();
+    } else {
+      $('#cartao-container').hide();
+    }
+  });
 });
