@@ -1,9 +1,11 @@
 let chart;
 
 async function loadChartData(year) {
+  var retorno = localStorage.getItem('retorno');
+  var userid = retorno;
   try {
-    const financesResponse = await axios.get('http://localhost:3000/finances');
-    const transactionsResponse = await axios.get('http://localhost:3000/transactions');
+    const financesResponse = await axios.get('http://localhost:3000/finances-busca', {userid: userid});
+    const transactionsResponse = await axios.post('http://localhost:3000/transactions-busca', { userid: userid });
 
     const finances = financesResponse.data;
     const transactions = transactionsResponse.data;

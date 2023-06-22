@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const formMongo = document.querySelector('#transaction-form');
   const tableBody = document.querySelector('#transaction-table-body');
+  var retorno = localStorage.getItem('retorno');
 
   formMongo.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const category = event.target.elements['transaction-category'].value;
     const cardTp = event.target.elements['tipos-cartao-dropdown'].value;
     const pagamento = event.target.elements['transaction-pag'].value;
+    const userid = retorno
 
     try {
       const response = await fetch('http://localhost:3000/transactions', {
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ date, description, value, category, pagamento, cardTp }),
+        body: JSON.stringify({ date, description, value, category, pagamento, cardTp, userid }),
       });
 
       if (response.ok) {
@@ -35,10 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function updateTransactionList() {
     try {
-      const response = await fetch('http://localhost:3000/transactions');
-
+      var retorno = localStorage.getItem('retorno');
+      const userid = retorno
+      const response = await fetch('http://localhost:3000/transactions-busca', {
+        method: 'POST',
+        body: JSON.stringify({ userid }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       if (response.ok) {
         const transactions = await response.json();
+        console.log(response, transactions);
 
         // Ordenar as transações por data
         ordenarPorData(transactions);
@@ -96,7 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 $(document).ready(function () {
-  $.get("http://localhost:3000/cartoes", function (response) {
+  var retorno = localStorage.getItem('retorno');
+  var userid = retorno;
+
+  $.post("http://localhost:3000/cartoes-busca", { userid: userid }, function (response) {
     if (response.success) {
       var cartoes = response.cartoes;
       var tiposCartao = [];
@@ -119,9 +132,7 @@ $(document).ready(function () {
       });
     }
   });
-});
 
-$(document).ready(function() {
   $('#cartao-container').hide();
 
   $('#transaction-pag').on('change', function() {

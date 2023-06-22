@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const moment = require('moment');
@@ -8,6 +9,12 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(session({
+  secret: 'teste',
+  resave: false,
+  saveUninitialized: true
+}));
 
 mongoose.connect('mongodb+srv://Joao:123@tecweb.m4o4lak.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -27,6 +34,7 @@ const transactionSchema = new mongoose.Schema({
   category: { type: String, required: true },
   pagamento: { type: String, required: false },
   cardTp: { type: String, required: false },
+  userid : { type: String, required: true },
 });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
@@ -35,6 +43,7 @@ const financeSchema = new mongoose.Schema({
   date: { type: Date, required: true },
   description: { type: String, required: true },
   value: { type: Number, required: true },
+  userid : { type: String, required: true },
 });
 
 const Finance = mongoose.model('Finance', financeSchema);
@@ -59,13 +68,14 @@ const CartoesSchema = new mongoose.Schema({
   cardCVV: { type: String, required: false },
   cardSaldo: { type: String, required: false },
   cardTp: { type: String, required: false },
+  userid : { type: String, required: true },
 });
 
 const Cartoes = mongoose.model('Cartoes', CartoesSchema);
 
 app.post('/transactions', async (req, res) => {
   try {
-    const { date, description, value, category, pagamento, cardTp } = req.body;
+    const { date, description, value, category, pagamento, cardTp, userid } = req.body;
 
     const transaction = new Transaction({
       date: moment(date, 'DD/MM/YYYY').toDate(),
@@ -74,6 +84,7 @@ app.post('/transactions', async (req, res) => {
       category,
       pagamento,
       cardTp,
+      userid,
     });
 
     await transaction.save();
@@ -85,9 +96,11 @@ app.post('/transactions', async (req, res) => {
   }
 });
 
-app.get('/transactions', async (req, res) => {
+app.post('/transactions-busca', async (req, res) => {
   try {
-    const transactions = await Transaction.find();
+    const {userid} = req.body;
+  console.log(req.body);
+    const transactions = await Transaction.find({ userid : userid });
 
     res.send(transactions);
   } catch (error) {
@@ -117,14 +130,51 @@ app.post('/user', async (req, res) => {
   }
 });
 
+app.post('/user-busca', async (req, res) => {
+  try {
+    const {userid} = req.body;
+    const user = await User.find({ _id : userid });
+    res.json({ success: true, user });
+  } catch (error) {
+    console.error('Erro ao buscar Usuário:', error);
+    res.status(500).send('Erro ao buscar Usuário');
+  }
+});
+
+app.post('/user-editar', async (req, res) => {
+  try {
+    const { userid, name, email, endereco, telefone } = req.body; // newData contém os novos dados do usuário
+    const user = await User.findById(userid);
+
+    if (!user) { 
+      return res.status(404).json({ success: false, message: 'Usuário não encontrado' });
+    }
+    // Atualize os dados do usuário com os novos dados fornecidos
+    user.name = name;
+    user.email = email;
+    user.telefone = telefone;
+    user.endereco = endereco;
+    // Outros campos que você deseja atualizar...
+
+    // Salve as alterações no banco de dados
+    await user.save();
+
+    res.json({ success: true, user });
+  } catch (error) {
+    console.error('Erro ao buscar editar Usuário:', error);
+    res.status(500).send('Erro ao buscar editar Usuário');
+  }
+}); 
+
 app.post('/finances', async (req, res) => {
   try {
-    const { date, description, value } = req.body;
+    const { date, description, value, userid } = req.body;
 
     const finance = new Finance({
       date: moment(date, 'DD/MM/YYYY').toDate(),
       description,
       value,
+      userid,
     });
 
     await finance.save();
@@ -136,9 +186,10 @@ app.post('/finances', async (req, res) => {
   }
 });
 
-app.get('/finances', async (req, res) => {
+app.post('/finances-busca', async (req, res) => {
   try {
-    const finances = await Finance.find();
+    const {userid} = req.body;
+    const finances = await Finance.find({ userid : userid });
 
     res.send(finances);
   } catch (error) {
@@ -151,9 +202,11 @@ app.post('/verificar-login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ name : username });
+    // req.session.userId = user._id;
+    console.log(user._id);
 
     if (user && user.password === password) {
-      res.json({ success: true });
+      res.json({ success: true , retorno: user._id});
     } else {
       res.json({ success: false });
     }
@@ -167,7 +220,7 @@ app.post('/verificar-login', async (req, res) => {
 // Rota para adicionar um novo cartão ao banco de dados
 app.post('/cartoes', async (req, res) => {
   try {
-    const { cardType, cardNumber, cardName, cardExpiry, cardCVV, cardSaldo, cardTp} = req.body;
+    const { cardType, cardNumber, cardName, cardExpiry, cardCVV, cardSaldo, cardTp, userid} = req.body;
 
     const cartoes = new Cartoes({
       cardType,
@@ -176,7 +229,8 @@ app.post('/cartoes', async (req, res) => {
       cardExpiry,
       cardCVV,
       cardSaldo, 
-      cardTp
+      cardTp,
+      userid
     });
 
     await cartoes.save();
@@ -189,9 +243,11 @@ app.post('/cartoes', async (req, res) => {
   }
 });
 
-app.get('/cartoes', async (req, res) => {
+app.post('/cartoes-busca', async (req, res) => {
   try {
-    const cartoes = await Cartoes.find();
+    const {userid} = req.body;
+    console.log(req.body);
+    const cartoes = await Cartoes.find({userid : userid});
     console.log(cartoes);
 
     res.json({ success: true, cartoes });

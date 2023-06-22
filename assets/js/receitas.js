@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const formMongo = document.querySelector('#finance-form');
   const tableBody = document.querySelector('#finance-table-body');
+  var retorno = localStorage.getItem('retorno');
 
   formMongo.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -8,14 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const date = moment(event.target.elements['finance-date'].value, 'YYYY-MM-DD').format('DD/MM/YYYY');
     const description = event.target.elements['finance-description'].value;
     const value = event.target.elements['finance-value'].value;
-
+    const userid = retorno
     try {
       const response = await fetch('http://localhost:3000/finances', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ date, description, value }),
+        body: JSON.stringify({ date, description, value, userid }),
       });
 
       if (response.ok) {
@@ -31,8 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   async function updateFinanceList() {
+    var userid = localStorage.getItem('retorno');
     try {
-      const response = await fetch('http://localhost:3000/finances');
+      const response = await fetch('http://localhost:3000/finances-busca',
+      {
+        method: 'POST',
+        body: JSON.stringify({ userid }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
       if (response.ok) {
         const finances = await response.json();

@@ -17,8 +17,10 @@ $(document).ready(function() {
           password: password
         },
         success: function(response) {
+          console.log(response.retorno);
           if (response.success) {
             alert('Login realizado com sucesso!');
+            localStorage.setItem('retorno', response.retorno);
             window.location.href = 'index.html'; 
           } else {
             alert('Usuário ou senha inválidos.');
