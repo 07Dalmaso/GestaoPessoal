@@ -1,5 +1,17 @@
 $(document).ready(function () {
-  $.get("http://localhost:3000/transactions", function (data) {
+
+  var retorno = localStorage.getItem('retorno');
+  var userid = retorno;
+
+  
+  if (retorno) {
+    $('#retorno-container').text(retorno);
+  }else{
+    localStorage.clear();
+    window.location.href = 'login.html';
+  }
+
+  $.post("http://localhost:3000/transactions-busca", { userid: userid }, function (data) {
     // Total de transações realizadas
     var totalTransacoes = data.length;
     $("#transacoes-realizadas").text(totalTransacoes);
@@ -34,11 +46,9 @@ $(document).ready(function () {
 
     $("#categoria-mais-gasta").text(categoriaMaisGasta);
   });
-});
 
 
-$(document).ready(function () {
-  $.get("http://localhost:3000/finances", function (finances) {
+  $.post("http://localhost:3000/finances-busca", { userid: userid }, function (finances) {
     // Receitas
     var receitas = 0;
     for (var i = 0; i < finances.length; i++) {
@@ -48,7 +58,7 @@ $(document).ready(function () {
     }
     $("#receitas").text("R$ " + receitas.toFixed(2));
 
-    $.get("http://localhost:3000/transactions", function (transactions) {
+    $.post("http://localhost:3000/transactions-busca", { userid: userid }, function (transactions) {
       // Despesas
       var despesas = 0;
       for (var i = 0; i < transactions.length; i++) {
@@ -62,11 +72,10 @@ $(document).ready(function () {
       $("#saldo").text("R$ " + saldo.toFixed(2));
     });
   });
-});
 
 
-$(document).ready(function () {
-  $.get("http://localhost:3000/cartoes", function (response) {
+
+  $.post("http://localhost:3000/cartoes-busca", { userid: userid }, function (response) {
     if (response.success) {
       var cartoes = response.cartoes;
       var totalSaldo = 0;
@@ -85,3 +94,4 @@ $(document).ready(function () {
     }
   });
 });
+

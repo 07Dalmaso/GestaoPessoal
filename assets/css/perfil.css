@@ -33,8 +33,9 @@ input[type="text"], input[type="email"] {
 	border: none;
 }
 
-button {
+#editar {
 	padding: 10px;
+	width: 220px;
 	border: none;
 	background-color: #007bff;
 	color: #fff;
@@ -42,8 +43,35 @@ button {
 	cursor: pointer;
 }
 
-button:hover {
+#editar:hover {
 	background-color: #0069d9;
+}
+
+#sair {
+	padding: 10px;
+	width: 220px;
+	border: none;
+	background-color: #ef2626;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#sair:hover {
+	background-color: #d90000;
+}
+#salvar-perfil {
+	padding: 10px;
+	width: 440px;
+	border: none;
+	background-color: #16a95b;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#salvar-perfil:hover {
+	background-color: #175602;
 }
 
 #mensagem {

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  var retorno = localStorage.getItem('retorno');
+  console.log(retorno);
 
   $('#cartao-form').submit(function (event) {
     event.preventDefault();
@@ -11,8 +13,9 @@ $(document).ready(function () {
     var cardCVV = $('#card-cvv-input').val();
     var cardSaldo = $('#card-saldo-input').val();
     var cardTp = $('#card-tp-input').val();
+    var userid = retorno
 
-    console.log(cardType, cardNumber, cardName, cardExpiry, cardCVV, cardSaldo, cardTp);
+    console.log(cardType, cardNumber, cardName, cardExpiry, cardCVV, cardSaldo, cardTp, userid);
 
     $.ajax({
       url: 'http://localhost:3000/cartoes',
@@ -24,7 +27,8 @@ $(document).ready(function () {
         cardExpiry: cardExpiry,
         cardCVV: cardCVV,
         cardSaldo: cardSaldo,
-        cardTp: cardTp
+        cardTp: cardTp,
+        userid: userid
       },
       success: function (response) {
         if (response.success) {
@@ -82,15 +86,20 @@ $(document).ready(function () {
 });
 
 async function usarDadosDosCartoes() {
+  var retorno = localStorage.getItem('retorno');
+  var userid = retorno;
   $.ajax({
-    url: 'http://localhost:3000/cartoes',
-    method: 'GET',
+    url: 'http://localhost:3000/cartoes-busca',
+    method: 'POST',
+    data: {
+      userid: userid
+    },
     success: function (response) {
       console.log('aqui', response);
       if (response.success) {
         const cartoes = response.cartoes;
         const cardContainer = document.getElementById("card-container");
-        cartoes.forEach((cartao, index) => {
+        cartoes.forEach((cartao) => {
           const cardDiv = document.createElement("div");
           cardDiv.classList.add("row");
           cardDiv.innerHTML = `
