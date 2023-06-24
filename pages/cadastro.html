@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="../assets/css/cadastro.css">
     <script src="../assets/js/cadastro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <header>
     <h1>Cadastro</h1>
@@ -26,10 +27,11 @@
         <img id="profile-preview" src="" alt="">
         <form id="cadastro" enctype="multipart/form-data">
             <br>
+            <div id="mensagem"></div>
             <div class="file-input-container">
                 <label for="profile-image" class="file-input-label">
                     <span>Selecione uma imagem</span>
-                    <input type="file" id="profile-image" name="profile-image" accept="image/*" required>
+                    <input type="file" id="profile-image" name="profile-image" accept="image/*">
                 </label>
             </div>
             <label for="new-username">Nome:</label>

@@ -5,6 +5,19 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const bodyParser = require('body-parser');
 const app = express();
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'assets/img'); // Especifique o caminho onde deseja armazenar os arquivos
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+    console.log(file);
+  },
+});
+const upload = multer({ storage: storage });
+
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -54,6 +67,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true },
   endereco: { type: String, required: true },
   telefone: { type: String, required: true },
+  imageFile: { type: String, required: false },
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -109,9 +123,10 @@ app.post('/transactions-busca', async (req, res) => {
   }
 });
 
-app.post('/user', async (req, res) => {
+app.post('/user', upload.single('imageFile'), async (req, res) => {
   try {
-    const { password, name, email, endereco, telefone } = req.body;
+    const { password, name, email, endereco, telefone, imageFile } = req.body;
+    // const imageFile = req.files.image; // Obtenha o arquivo de imagem do corpo da requisição
 
     const user = new User({
       password,
@@ -119,11 +134,13 @@ app.post('/user', async (req, res) => {
       email,
       endereco,
       telefone,
+      imageFile, // Armazene apenas o nome do arquivo no banco de dados
     });
 
     await user.save();
 
-    res.status(201).send(user);
+    const url = 'login.html';
+    res.status(201).send({ redirectUrl: url});
   } catch (error) {
     console.error('Erro ao adicionar usuário:', error);
     res.status(500).send('Erro ao adicionar usuário');

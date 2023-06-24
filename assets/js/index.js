@@ -4,7 +4,7 @@ $(document).ready(function () {
   var userid = retorno;
 
   
-  if (retorno) {
+  if (retorno && retorno.userid != 'undefined') {
     $('#retorno-container').text(retorno);
   }else{
     localStorage.clear();

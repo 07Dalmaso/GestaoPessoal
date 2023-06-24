@@ -10,19 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('new-email').value;
         const endereco = document.getElementById('new-endereco').value;
         const telefone = document.getElementById('new-numero').value;
+        const fileInput = document.getElementById('profile-image');
+        const fileInput2 = document.getElementById('profile-image').value;
+        const imageFile = fileInput.files[0];
+
+
+        const formData = new FormData();
+        formData.append('password', password);
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('endereco', endereco);
+        formData.append('telefone', telefone);
+        formData.append('imageFile', imageFile);
 
         try {
             const response = await fetch('http://localhost:3000/user', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ password, name, email, endereco, telefone }),
+                body: formData,
             });
-
             if (response.ok) {
-                url = 'index.html';
-                window.location.href = url;
+                const responseData = await response.json();
+                const redirectUrl = responseData.redirectUrl;
+                window.location.replace(redirectUrl);
             } else {
                 console.error('Erro ao adicionar Usuario:', response.status);
             }
