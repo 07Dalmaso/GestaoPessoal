@@ -2,10 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoriasBody = document.querySelector('#categorias-body');
   const selectCategoria = document.querySelector('#select-categoria');
   const transacoesTable = document.querySelector('#transacoes-categoria tbody');
+  var retorno = localStorage.getItem('retorno');
+  var userid = retorno;
 
   async function fetchTransactionsByCategory() {
     try {
-      const response = await fetch('http://localhost:3000/transactions');
+      const response = await fetch('http://localhost:3000/transactions-busca', {
+        method: 'POST',
+        body: JSON.stringify({ userid }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       if (!response.ok) {
         throw new Error('Erro ao buscar transações');
       }
