@@ -69,6 +69,7 @@ $(document).ready(function () {
 
       // Saldo
       var saldo = receitas - despesas;
+      $('#limite-utilizado').text("R$ " + despesas.toFixed(2));
       $("#saldo").text("R$ " + saldo.toFixed(2));
     });
   });
@@ -86,11 +87,12 @@ $(document).ready(function () {
           if (!isNaN(saldo)) {
             totalSaldo += saldo;
         }
+        var dispensasSaldo = totalSaldo - despesas
       }
       });
-      $('#limite-total').text("R$ " + totalSaldo);
-      $('#limite-utilizado').text("R$ " + totalSaldo);
-      $('#limite-disponivel').text("R$ " + totalSaldo);
+     console.log(totalSaldo );
+      $('#limite-total').text("R$ " + totalSaldo.toFixed(2));
+      $('#limite-disponivel').text("R$ " + totalSaldo.toFixed(2));
     }
   });
 });
