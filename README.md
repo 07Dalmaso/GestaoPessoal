@@ -13,6 +13,12 @@ Bem-vindo ao projeto de Finanças, um site de gestão financeira desenvolvido co
 
 - **Integração com MongoDB**: Utilizamos o MongoDB como banco de dados não relacional para armazenar e recuperar suas informações financeiras de maneira eficiente.
 
+## Problema Principal 
+Muitas pessoas enfrentam dificuldades para acompanhar suas finanças e tomar decisões informadas devido à falta de ferramentas simples e eficazes para gerenciar suas receitas, despesas e cartões de crédito.
+
+## Solução Proposta 
+O projeto "Finanças" oferece uma solução completa para essa problemática, permitindo que os usuários registrem suas finanças de forma organizada e visualizem gráficos informativos para uma melhor compreensão de suas finanças pessoais.
+
 ## Tela de Login 
 - Tela simples de login
 - Cadastro
